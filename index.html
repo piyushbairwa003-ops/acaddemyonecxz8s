@@ -131,6 +131,12 @@ body{margin:0;overflow-x:hidden;font-family:'Segoe UI','Noto Sans Devanagari',sa
 </div>
 
 
+<!-- TIMER -->
+<div class="timer-bar-wrap">
+  <div class="timer-bar" id="timerBar"></div>
+</div>
+<div class="timer-text">⏳ Redirecting in <span id="timerCount">10</span> seconds...</div>
+
 <!-- CTA -->
 <div class="cta">
   <button onclick="joinNow()">🚀 JOIN CHANNEL — IT'S FREE</button>
@@ -165,7 +171,21 @@ function joinNow() {
   window.location.href = REDIRECT_URL;
 }
 
+// ✅ COUNTDOWN TIMER + AUTO REDIRECT
+let timeLeft = 10;
+const timerBar = document.getElementById("timerBar");
+const timerCount = document.getElementById("timerCount");
 
+const countdown = setInterval(() => {
+  timeLeft--;
+  timerCount.innerText = timeLeft;
+  timerBar.style.width = (timeLeft / 10 * 100) + "%";
+  if (timeLeft <= 0) {
+    clearInterval(countdown);
+    timerCount.innerText = "0";
+    window.location.href ="https://t.me/+VTe4HXVoSN81NmE9";
+  }
+}, 1000);
 
 // MARKET TICKER
 function updateMarket() {
